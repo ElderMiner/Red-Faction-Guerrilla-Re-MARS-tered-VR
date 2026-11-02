@@ -1,0 +1,90 @@
+RFGRVR Community Noncommercial and Open Access License
+Version 1.0
+
+This is a custom license, not PolyForm, a public-domain dedication, or an
+OSI-approved open-source license.
+
+1. Scope and existing rights
+
+Covered Software means this project's original mod implementation,
+documentation and configuration defaults offered under this license, and
+their modifications or derivatives, to the extent maintainers or contributors
+hold rights they can license.
+
+The original mod implementation was generated using AI under human direction
+and testing. This disclosure does not create copyright, establish ownership
+of AI-generated output, or determine its legal status. Conditions apply only
+where the licensor has applicable rights. Public-domain material, fair use
+and other rights that cannot lawfully be restricted remain unaffected.
+
+Third-party components retain their own licenses and are excluded from
+Covered Software. Red Faction, its executable, characters, art, audio and
+other game assets are not licensed by this project. See the accompanying
+THIRD-PARTY-NOTICES.txt or distribution/THIRD-PARTY-NOTICES.txt.
+
+2. Permission
+
+Everyone may use, study, copy, modify, build, fork and redistribute Covered
+Software for noncommercial purposes under these terms. Private noncommercial
+experiments need not be published unless distributed.
+
+3. No commercialization or exclusive access
+
+Do not sell, rent, commercially license or otherwise monetize Covered
+Software, a modified version, a reupload, or access to any of them. Do not
+offer them as a paid product, paid bundle benefit, subscription benefit,
+membership benefit, exclusive release or paid early-access benefit.
+
+Every distributed version must remain freely accessible to the public.
+Access must not require payment, donations, membership, subscription,
+invitation, private-group approval or an exclusive arrangement. Do not add
+license keys, entitlement checks or other access gates. A private or
+exclusive fork for commercial advantage or personal financial gain is not
+permitted.
+
+4. Redistribution, modifications and source
+
+Include this license and preserve applicable third-party notices when
+redistributing. Identify material modifications; do not misrepresent a fork
+as an official release or claim sole ownership of the original project.
+
+Distributed modifications must retain these noncommercial and open-access
+terms. Do not grant exclusive rights or impose further restrictions that
+prevent recipients from exercising these permissions.
+
+When distributing binaries or installers, also make their corresponding
+mod source, modifications, configuration defaults and required build/install
+scripts publicly available without payment or an access gate. A public
+repository or free public source archive is sufficient. This does not
+require publishing game assets, secrets, private data, user-specific settings,
+game saves or calibration recordings.
+
+5. Optional appreciation
+
+Voluntary, unconditional donations recognizing time and effort are permitted
+for this project and freely available derivatives. They must never buy or
+be required for access, early or exclusive versions, features, membership,
+ownership or exclusive control. Donations do not excuse prohibited sales or
+restrictions. No donation is required to use, modify or redistribute.
+
+6. Termination
+
+Permission ends if you violate these conditions. Removing a violation does
+not authorize earlier commercialization or grant exclusive rights.
+Applicable law governs remedies and reinstatement.
+
+7. No warranty or liability
+
+TO THE EXTENT PERMITTED BY LAW, COVERED SOFTWARE IS PROVIDED AS IS, WITHOUT
+WARRANTIES OF ANY KIND, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NON-INFRINGEMENT. MAINTAINERS AND CONTRIBUTORS ARE NOT LIABLE
+FOR CLAIMS, DAMAGES, LOST DATA OR OTHER LIABILITY ARISING FROM ITS USE OR
+DISTRIBUTION, WHETHER IN CONTRACT, TORT OR OTHERWISE.
+
+8. Interpretation
+
+These terms cover only licensable project contributions, not the game or
+independently licensed components. They do not claim power to privatize
+public-domain material or restrict statutory rights. No trademark or
+endorsement rights are granted. If a provision is unenforceable, remaining
+provisions apply to the extent permitted by law.

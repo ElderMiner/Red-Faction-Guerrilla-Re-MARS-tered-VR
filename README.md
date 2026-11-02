@@ -1,6 +1,4 @@
-# Red-Faction-Guerrilla-Re-MARS-tered-VR
-Red Faction Guerrilla Re-MARS-tered VR mod with motion-controlled weapons, two-handed aiming, physical reloading, melee, vehicle and turret controls, immersive menus, and customizable VR settings. Includes Quest Touch, Valve Index, and Steam Frame controller layouts, plus an install/uninstall wizard.
-
+# Red Faction Guerrilla VR
 
 An unofficial OpenXR VR mod for **Red Faction Guerrilla Re-MARS-tered**, Windows / Steam app 667720.
 
@@ -40,7 +38,7 @@ Setup verifies the game executable against `distribution/supported-game.json`. D
 
 ## Download and installation
 
-1. Download `RFGRVR-Setup.zip` from the public Releases page. Until GitHub releases are configured, use the maintainer's supplied installer ZIP.
+1. Download `RFGRVR-Setup.zip` from the [public Releases page](https://github.com/ElderMiner/Red-Faction-Guerrilla-Re-MARS-tered-VR/releases).
 2. Extract it outside the game folder; keep that copy for repair/uninstall.
 3. Close the game and companion. For initial Steam integration, exit Steam using **Steam > Exit**.
 4. Run **RFGRVR-Setup.exe**, select the folder containing `rfg.exe`, and click **Install / Update**.
@@ -202,7 +200,7 @@ Per-user head-pivot/elbow recordings are not universal defaults. Fresh headset c
 
 ## Updates, Standard mode and uninstall
 
-The selector shows the installed version and **Check for updates**, and also checks when VR is selected. Downloads remain unconfigured until the maintainer sets the public GitHub repository. Until then, the button explains missing configuration rather than contacting an invented address.
+The selector shows the installed version and **Check for updates**, and also checks when VR is selected. This release is configured to use the public `ElderMiner/Red-Faction-Guerrilla-Re-MARS-tered-VR` GitHub repository. An empty repository setting in a custom build disables downloads.
 
 Once configured, updates use the latest published release's `RFGRVR-Setup.zip` and `.sha256`, verify the download, and run the same wizard. Close game/companion first. Manual downloads work too. Do not mix DLLs/companions from different versions. Backups are in `RFGRVR/backups`.
 
