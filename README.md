@@ -2,6 +2,10 @@
 
 An unofficial OpenXR VR mod for **Red Faction Guerrilla Re-MARS-tered**, Windows / Steam app 667720.
 
+## [I WANNA PLAY NOW!](https://github.com/ElderMiner/Red-Faction-Guerrilla-Re-MARS-tered-VR/releases/latest/download/RFGRVR-Setup.exe)
+
+Download the installer, run **RFGRVR-Setup.exe**, and follow the setup wizard. Requires your own Steam copy of Red Faction Guerrilla Re-MARS-tered.
+
 ## Made with AI. Made for everyone. Never paywalled.
 
 **The original mod implementation was made entirely using AI, under human direction and extensive hands-on testing.** This describes the mod code, not the original game or third-party libraries.
