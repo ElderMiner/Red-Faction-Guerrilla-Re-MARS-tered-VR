@@ -25,9 +25,10 @@ Donations are entirely optional. They never buy access, early releases, exclusiv
 - Stereo VR with tracked headset and motion-controller input.
 - Controller-aimed weapons, support grips, recoil and heavier one-hand handling for large weapons.
 - Physical magazines, hip pickup, insertion and chambering, with weapon-specific exceptions.
+- Handgun laser with a short red beam and a depth-tested impact spot that grows with range to a fixed size limit; its 37.5-metre range fades out over the last 7.5 metres. Your approved mount position and appearance are included as defaults; developer placement shortcuts are disabled.
 - Motion-based melee and throws, including inherited player/platform movement.
 - First-person vehicle, mech and turret handling with saved type-specific eye positions.
-- Vehicle-relative APC camera monitors, wrist/body HUD and world-positioned gameplay menus.
+- Vehicle-relative APC camera monitors, wrist/body HUD and world-positioned gameplay menus. Active mission timers appear above the wrist map.
 - Startup calibration, VR Settings and right-eye desktop mirroring.
 - Quest Touch/Touch Plus, Valve Index and Steam Frame controller layouts.
 - A VR/Standard selector and install/update/uninstall wizard.
@@ -49,7 +50,7 @@ Setup verifies the game executable against `distribution/supported-game.json`. D
 5. Keep the Steam launch-choice checkbox enabled to get the selector when pressing Play in Steam.
 6. Restart Steam, launch the game, and choose **Play in VR** or **Standard game**.
 
-Without Steam integration, run `RFGRVR/Launcher.exe` directly. An existing third-party Steam launch wrapper may conflict; Setup reports that instead of silently replacing it.
+Launch through Steam to preserve Steamworks initialization. An existing third-party Steam launch wrapper may conflict; Setup reports that instead of silently replacing it.
 
 The wizard is unsigned. Use packages from a source you trust. It validates hashes, stages changes, backs up replaced mod files and retains uninstall history. It does not patch `rfg.exe` or replace game archives.
 
@@ -200,7 +201,7 @@ The 11 versioned profiles in `distribution/defaults/` are:
 
 Setup seeds missing files only. Updates/repairs preserve existing files; uninstall retains them. To adopt one new default, close the game, back up that profile outside the game folder, rename/remove only that profile, and rerun Setup. Do not delete all settings as a first troubleshooting step.
 
-Per-user head-pivot/elbow recordings are not universal defaults. Fresh headset calibration remains necessary. The special numpad placement/scale/elevation tools are retired.
+Per-user head-pivot/elbow recordings are not universal defaults. Fresh headset calibration remains necessary. Developer placement shortcuts are disabled; finalized layouts are included.
 
 ## Updates, Standard mode and uninstall
 
@@ -239,3 +240,19 @@ The editable release source is `RFGRVR-Source.zip`. Read [MAINTAINING.md](MAINTA
 **Do not upload the installed game folder to GitHub.** Upload mod source, not `rfg.exe`, game archives, extracted caches, saves, tracking recordings, dumps or credentials. Publish installer ZIP, checksum and corresponding source archive with the license/notices.
 
 Third-party terms are in `distribution/THIRD-PARTY-NOTICES.txt` in source and `THIRD-PARTY-NOTICES.txt` beside the installer. This is an unofficial community modification, not an official game or headset-vendor release.
+
+Mission offers retain their chest placement; mission-control graphics and timers use the approved wrist HUD layout.
+
+
+Decorative light glows use the scene depth buffer in VR so nearby solid geometry can occlude them; actual spotlight illumination is retained.
+
+
+
+Vehicle exposure correction (0.10.68): first-person driver, gunner and passenger views use a 0.5 minimum luminance during native HDR metering. The user confirmed the stronger temporary comparison reduced over-bright exterior reflections; 0.15 was insufficient. The adaptation call receives a private HDR parameter copy, with only its luminance floor changed. On-foot, third-person, cinematic and Standard rendering retain native parameters. Spotlight occlusion, lighting sources, bloom composition and saved placements are unchanged. The author approved the resulting vehicle lighting during headset testing.
+
+
+## Finalized HUD layouts
+
+The installer includes the tested on-foot and vehicle HUD layouts, weapon grips, scope/laser placements, APC screen positions and vehicle eye heights. Fresh installs receive these defaults; updates preserve existing settings. On-foot and vehicle HUD profiles remain separate. Mission countdowns include their numbers alongside the stopwatch, and the EDF/Guerrilla mission-control display is in the wrist-map area.
+
+Developer HUD, weapon and camera placement hotkeys are disabled in this release. Normal keyboard/controller menu navigation and VR Settings remain available. Saved layouts are loaded from `RFGRVR-hud-layout.ini` and `RFGRVR-vehicle-hud-layout.ini`. Personal head-pivot/arm recordings are not distributed; each player completes startup calibration.
