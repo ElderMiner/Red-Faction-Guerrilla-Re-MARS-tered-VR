@@ -29,7 +29,9 @@ Donations are entirely optional. They never buy access, early releases, exclusiv
 - Motion-based melee and throws, including inherited player/platform movement.
 - First-person vehicle, mech and turret handling with saved type-specific eye positions.
 - Vehicle-relative APC camera monitors, wrist/body HUD and world-positioned gameplay menus. Active mission timers appear above the wrist map.
-- Startup calibration, VR Settings and right-eye desktop mirroring.
+- DLC Missilepod stack reloading and approved DLC weapon/vehicle/HUD placements. Temporary setup hotkeys and automatic testing unlocks are disabled; progression remains native.
+- Main-menu artwork rasterized to a 6144 � 3456 surface and drawn through both eye views. Loading/fallback screens use the same world-plane renderer. In-game popup menus reuse the menu surfaces with 6K native UI capture and per-eye foreground drawing while open; main-menu, loading-screen and popup presentation are headset-confirmed.
+- Startup calibration, VR Settings with a right-hand laser pointer and trigger selection, a Recalibrate button, and right-eye desktop mirroring.
 - Quest Touch/Touch Plus, Valve Index and Steam Frame controller layouts.
 - A VR/Standard selector and install/update/uninstall wizard.
 
@@ -161,7 +163,7 @@ The minimap hides during support gripping. Use prompts appear near the left hand
 
 ## VR Settings
 
-Open **Pause > VR SETTINGS** in the headset or desktop window.
+Open **Pause > VR SETTINGS** in the headset or desktop window. Point with the right hand and pull the right trigger to select. Use Previous / More Options to reach additional rows, or navigate with the controller stick/buttons. The Recalibrate button restarts calibration and returns to the running game.
 
 | Option | Purpose |
 |---|---|
@@ -248,7 +250,7 @@ Decorative light glows use the scene depth buffer in VR so nearby solid geometry
 
 
 
-Vehicle exposure correction (0.10.68): first-person driver, gunner and passenger views use a 0.5 minimum luminance during native HDR metering. The user confirmed the stronger temporary comparison reduced over-bright exterior reflections; 0.15 was insufficient. The adaptation call receives a private HDR parameter copy, with only its luminance floor changed. On-foot, third-person, cinematic and Standard rendering retain native parameters. Spotlight occlusion, lighting sources, bloom composition and saved placements are unchanged. The author approved the resulting vehicle lighting during headset testing.
+Vehicle lighting preserves normal exposure and limits bloom separately. Improved nighttime lighting is the default; choose Vanilla in VR Settings to restore native nighttime values. Decorative light glows respect walls, and headlight cone meshes stay attached to their vehicle when you turn your head.
 
 
 ## Finalized HUD layouts
@@ -256,3 +258,10 @@ Vehicle exposure correction (0.10.68): first-person driver, gunner and passenger
 The installer includes the tested on-foot and vehicle HUD layouts, weapon grips, scope/laser placements, APC screen positions and vehicle eye heights. Fresh installs receive these defaults; updates preserve existing settings. On-foot and vehicle HUD profiles remain separate. Mission countdowns include their numbers alongside the stopwatch, and the EDF/Guerrilla mission-control display is in the wrist-map area.
 
 Developer HUD, weapon and camera placement hotkeys are disabled in this release. Normal keyboard/controller menu navigation and VR Settings remain available. Saved layouts are loaded from `RFGRVR-hud-layout.ini` and `RFGRVR-vehicle-hud-layout.ini`. Personal head-pivot/arm recordings are not distributed; each player completes startup calibration.
+
+
+### Night lighting
+
+Pause > VR Settings > **Night lighting** selects **Improved (default)** or **Vanilla**. Improved uses the approved lighting and color preset; Vanilla restores native night lighting and color. The individual lighting sliders are removed. This choice saves automatically and applies live.
+
+Both modes keep native daytime lighting from 06:00 to 18:00. The improved preset fades in from 18:00 to 19:00 and fades out from 05:00 to 06:00. HUD and menu artwork retain their brightness.
