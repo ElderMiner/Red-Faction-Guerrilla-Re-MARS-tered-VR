@@ -360,3 +360,65 @@ Corona billboards: native12ACA4 uploads camera+8 rotation;12ACDB uses position+2
 0.10.105: handgun kick follows bounded1-4 round ammo consumption even when the native firing/aim flag is late or absent. Previously that flag had to overlap the ammo decrease; a missed overlap discarded the kick permanently. Reload/magazine removal and weapon-identity changes remain excluded. Later firing flags with unchanged ammo do not add duplicate kick; other weapon profiles retain their existing gate. Regression covers eight rapid shots with delayed flags, three rounds between samples, empty-mag removal, reload, switching and cumulative shot direction. Recoil strength unchanged from0.10.103. Menu-atlas recovery retained. Headset results pending.
 
 Release0.10.105: user approved the installed result for public packaging. Both builds and48 native tests passed; final changed recoil/arm tests and Standard-mode built-DLL smoke passed. Main menu/popups and pointer share the original swapchain budget. Preserve all approved shipping defaults; no runtime profiles or personal calibration recordings were reseeded for this release.
+
+Modern lighting development: see LIGHTING-ROADMAP.md for built versus connected systems. BUILD-SHADERS.ps1 synchronizes authored HLSL with embedded sources before tests/releases. Never substitute private native captures for authored shader source.
+
+0.13.18: Lighting is controlled solely by Config::Lighting (default Improved). Native scene pairs publish the same mode for companion grading; keyboard toggle input is inert. Free-standing height uses right grip + right-stick Y, saves one shared free-standing offset, and translates the fixed body/head anchor together. Vehicle height paths remain separate.
+
+0.13.19 supersedes the 0.13.18 height behavior: free-standing adjustment is camera-eye-only and never translates the mounted body root. EyeOnlyHeight replaces and ignores legacy EyeHeight recorded by the body-moving candidate. Reticle suppression filters exact hashes before document memory checks, preserving the UI fast path.
+
+Private 0.13.20: walking head-bone X/Z translation does not drive the HMD anchor. Crouch/jump vertical transitions and rigid render-root interpolation remain. Raw-eye desktop capture is skipped only while the finished-eye shared stream is fresh for this process (500 ms); stale/foreign streams retain fallback capture.
+
+Private 0.13.21: vehicleType uses the existing synchronous BatchMemory scope. thirdPerson caches copied classification keyed by vehicle handle, invalidated at prepareHeight mount/seat changes. No native pointers or page metadata are retained across operations. Settings and calibration override remain live. test_native_head checks lookup amortization, identity changes and failure retry.
+
+0.13.22 supersedes the 0.13.20 camera note: restore rendered-head X/Z attachment exactly as before 0.13.20. Performance changes must not remove camera/body attachment. Driving speed makes the general frame-rate issue more visible; do not classify it as exclusively vehicle-specific.
+
+0.13.23: gameplay render credits follow shared-eye stage/release and precede upscale; missing-pair, settings and transition paths issue once too. Pose publication remains at its original point. Never change body/camera math for this scheduling optimization. test_stereo_early_release acquires both producer keys inside the callback before upscale.
+
+0.13.24: ragdoll head is captured once per native pair and reset by first-eye Select. Never sample its animated head separately for each eye or retain normal renderedPoseValid through its early-return branch. test_camera_input reproduces inter-eye head motion and missing right-side lookup. Normal body/camera paths are unchanged.
+
+0.13.25: rag state 3 is get-up and retains native animated head ownership. A valid ragdoll head arms existing landing-eye recovery, keeping neutral standing fitting off until the head settles. Saved offsets and ordinary non-ragdoll formulas are unchanged. test_native_head covers ragdoll -> state0 lowered head -> settled release.
+
+0.13.26: on-foot health apply ignores only lateral saved offset, keeping its center on the look-centered chest anchor independently of scale. Retains height/depth, file data and all vehicle atlas placement. test_hud_layout covers yaw/size independence.
+
+0.13.27: Human state 0xA is HS_VEHICLE_EXITING (references/RFGR_Types/rfg/Human.h). First-person exits use the owned animated head path with same-pair snapshot and recovery. Do not classify it as a passenger seat for camera ownership. Third-person view, mounted turret and driving anchors are unchanged.
+
+0.13.27 approved profile edit: reverse Camera2 moved down 0.10 and outward along reverse viewing direction by 0.15; only this camera position changes, not exposure or monitor layout. Existing installed author profile updated explicitly; installer still preserves profiles.
+
+0.13.27 pickup follow-up: native ground-weapon panel is message_swap_main, hash 0x2828844e (verified against executable hash table and messages document), separate from message_use. Route both through existing Notice channel; skip hidden siblings before throttling. Do not capture the entire messages document. Aircraft damage investigation remains open; no speculative AI/wanted changes shipped.
+
+0.13.28: tank-only authoring uses existing APC renderer, fifth unused atlas cell and v2 camera IPC (400 bytes on x86/x64). Native tank driver gun pose supplies barrel camera; no player transform writes. Two rotating tank auxiliary captures per frame; APC budget unchanged. Left-stick longitudinal axis maps to native throttle/brake, right stick controls driver-owned turret joint angles using native constraints; RT routes to native vehicle A-fire. First-person tank classification supersedes legacy forced third person. All setups remain tank-only; update must ship game DLL and companion together.
+
+0.13.29 corrects native tank input mapping (LS remains LS; RT/A remain separate guns), driverControlled suppresses native head/camera turret updates for local tank driver only. Tank body/eye scaffold uses a hull-local seat with hull basis and saved BodyHeight; native rotating character render rebase excluded only in tank state9. Insert/Delete adjusts this anchor only for HeavyTank types; medium/artillery tanks ignore BodyHeight. Visible depth-tested tank camera housing/direction markers reuse screen draw (1200-vertex capacity).
+
+0.13.30 tank editor: physical Numpad keys stay separate from dedicated navigation keys regardless of Num Lock. In screen mode [ / ] decreases/increases width; ; / apostrophe decreases/increases height. Camera markers show through the hull. Full-circle tank mounts wrap at the rear angle.
+
+0.13.31: spawner restores GetAsyncKeyState(VK_NUMPAD8/2/4/6/5) alongside physical scan tracking. Never use VK_HOME/END/navigation fallback. Tests inject every spawner button into its actual polling function, including release/focus gating.
+
+Tank screen depth: regular . brings the selected screen closer; regular / moves it farther away. These are not numpad keys. Screen mode only; changes save automatically.
+
+0.13.33: tank LT disabled; RT/A unchanged. Regular period/slash also edit camera depth. Tank command root published under a short-lived owner/character/vehicle-keyed frame; camera carries saved offset to that same body root to avoid earlier head-sample lag. No other movement/vehicle camera changes.
+
+0.13.34 tank cabin: seated body, eyes and monitor assembly follow native seat/cannon traversal. Left-stick driving remains relative to the hull front; cameras retain hull/barrel mounts. Saved placement and heavy-only height adjustment are retained.
+
+Private 0.13.35: local tank input uses native hull-relative tread mode only within the drive call, restoring the camera setting afterward. Native tank camera axes 6/7 are suppressed for controller 0 while the independent RS joint aim remains active. Rotating cabin/body/screens and saved placements remain unchanged. Other vehicles and Standard mode are unaffected. Headset results pending.
+
+Private 0.13.36: Insert/Delete adjusts body and eyes in every tank, saved per canonical tank family. LT fires the secondary turret (A remains an alias), RT main gun, LS hull-relative driving and RS gun aim retained. Occupied tank screens draw over the hull; parked/APC panels retain depth occlusion. A one-time backed-up migration copies medium-tank screen layout to heavy/artillery families, preserving seats, heights and camera mounts/pitch/FOV.
+
+Private 0.13.37: heavy/artillery body, eyes and screens stay hull-fixed; medium cabin retains traversal. Full-circle tank yaw stays continuous across +/-180 degrees instead of wrapping the motor target by a full turn. Partial arcs remain clamped. Height, LT/RT controls, hull-relative steering, saved layouts and camera mounts retained. Headset verification pending.
+
+Private 0.13.38: artillery gun camera uses stable launcher assembly origin/orientation rather than alternating native muzzle tubes; other tank gun cameras retain muzzle attachment. Tank feed scheduling: gun every game frame, front/left/right/rear every second frame; three reduced-resolution passes per frame. APC remains four feeds. Saved camera offsets, body anchoring, screen layout and controls retained. Overall FPS and headset result unverified.
+
+Private 0.13.38 follow-up: screens 1/front and 2/gun update each game frame (2.5 times the previous two-of-five cadence); left/right/rear rotate at one third rate. Left camera position is authoritative on load, with right mirrored; editing either side updates its counterpart. Screen transforms remain independent. Tank aim input expires after 60 ms instead of 250 ms and is rejected while paused, reducing stale-input carryover. Residual motion after cannon movement remains unverified: no live tracking map was available for capture.
+
+Private 0.13.39: artillery camera 2 uses the verified mechanical elevation pivot (yaw pivot fallback, then turret root), never a firing weapon/tube position. Gun orientation still controls its viewing direction; saved camera offsets remain applied. Tests now vary weapon position while keeping pivot fixed. Existing feed cadence, mirrored side positions and tank controls retained. Live result pending.
+
+Private 0.13.40: LT directly overrides native tank secondary held/pressed actions 0x2A for local controller 0, with release/expiry/pause handling; A is removed from tank gameplay. APC front feed updates every game frame; others rotate at one third rate, reducing total to two passes. Tank feed cadence retained. Camera setup markers hidden. Includes pending artillery pivot correction. Saved settings retained; live results pending.
+
+Private 0.13.41: artillery camera 2 locks its position to the exact approved 0.13.40 live capture, in hull-local coordinates (-0.152348364, 1.506873195, 3.504900077); gun orientation remains live. Firing pivot, tube and weapon position changes cannot relocate it. Camera editor offsets remain usable. Camera profile loader canonicalizes all tank variants to heavy/medium/artillery family entries; current saved profiles already use those three families. Tests cover tube/weapon/pivot movement, direction and variant reload. Live result pending.
+
+Private 0.13.42: measured artillery weapon roll differs from the pitch rigid-body frame although forward matches. Camera 2 now uses the verified physical pitch body basis (+70), not the tube weapon basis; approved captured position is stored in native hull units, removing calibration-scale relocation. Per-family CameraMountScale keeps authored camera offsets independent of later seat calibration changes; canonical profiles already share all variants. Auxiliary view passes temporarily disable native sun generation and restore it afterward to prevent shared glare-texture contamination; main-eye shafts retain their path. Live results pending.
+
+Private 0.13.43: artillery camera 2 is a full rigid attachment to the verified physical launcher model body (+70). Position and orientation use the same frame; editor position is a fixed local offset, preserving the native rotation pivot. Supersedes the hull lock in 0.13.41/42. Derived initial offset uses the approved position and recorded model geometry; live placement still needs verification. Glare observation captured zero SunGlare01 values throughout; remaining sky wash is not confirmed fixed.
+
+Release 0.13.44: approved placement defaults saved from the author session; private head/arm recordings excluded. RFGRVR_DEVELOPER_TOOLS gates tank editors/spawner and is undefined in distribution builds. Normal controls and VR Settings remain. Known sun-glare issue documented; no GitHub publication performed by packaging.

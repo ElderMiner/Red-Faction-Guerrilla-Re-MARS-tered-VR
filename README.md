@@ -2,6 +2,8 @@
 
 An unofficial OpenXR VR mod for **Red Faction Guerrilla Re-MARS-tered**, Windows / Steam app 667720.
 
+Release 0.13.44. Includes the current lighting, tank cameras and approved placement defaults. Known issue: looking toward the sun can still produce excessive sky glare.
+
 ## [I WANNA PLAY NOW!](https://github.com/ElderMiner/Red-Faction-Guerrilla-Re-MARS-tered-VR/releases/latest/download/RFGRVR-Setup.exe)
 
 Download the installer, run **RFGRVR-Setup.exe**, and follow the setup wizard. Requires your own Steam copy of Red Faction Guerrilla Re-MARS-tered.
@@ -265,3 +267,37 @@ Developer HUD, weapon and camera placement hotkeys are disabled in this release.
 Pause > VR Settings > **Night lighting** selects **Improved (default)** or **Vanilla**. Improved uses the approved lighting and color preset; Vanilla restores native night lighting and color. The individual lighting sliders are removed. This choice saves automatically and applies live.
 
 Both modes keep native daytime lighting from 06:00 to 18:00. The improved preset fades in from 18:00 to 19:00 and fades out from 05:00 to 06:00. HUD and menu artwork retain their brightness.
+
+## Private tank setup (0.13.28)
+
+Tanks stay in first person. Left stick drives/reverses/steers; right stick rotates/elevates the gun. Right trigger fires the main cannon; A fires the secondary turret. Numpad 0 on foot opens the tank-only spawn list (8/2 selects, 5 spawns). In a tank, Numpad 1–5 selects front/barrel/left/right/rear; Control switches screen/camera editing. Arrows position; camera mode Page Up/Down moves forward/back and */minus changes FOV. Screen mode Page Up/Down tilts forward/back, Home/End turns left/right and */minus changes curvature. Screen-mode Numpad 0 starts right-hand placement, right grip confirms. Num Lock does not affect physical keypad selection. All edits save automatically. These are private setup controls, separate from the locked APC layout.
+
+Tank setup: Heavy tanks only: Insert raises / Delete lowers the hull-anchored body and attached eyes. Tank camera housings and their forward pointers are visible. Head movement does not aim the tank gun.
+
+0.13.30 tank editor: physical Numpad keys stay separate from dedicated navigation keys regardless of Num Lock. In screen mode [ / ] decreases/increases width; ; / apostrophe decreases/increases height. Camera markers show through the hull. Full-circle tank mounts wrap at the rear angle.
+
+Tank screen depth: regular . brings the selected screen closer; regular / moves it farther away. These are not numpad keys. Screen mode only; changes save automatically.
+
+Tank update: left trigger does not fire; RT remains main cannon and A remains secondary turret. Regular . / slash edit depth in either selected screen or camera mode.
+
+0.13.34 tank cabin: seated body, eyes and monitor assembly follow native seat/cannon traversal. Left-stick driving remains relative to the hull front; cameras retain hull/barrel mounts. Saved placement and heavy-only height adjustment are retained.
+
+Private 0.13.35: local tank input uses native hull-relative tread mode only within the drive call, restoring the camera setting afterward. Native tank camera axes 6/7 are suppressed for controller 0 while the independent RS joint aim remains active. Rotating cabin/body/screens and saved placements remain unchanged. Other vehicles and Standard mode are unaffected. Headset results pending.
+
+Private 0.13.36: Insert/Delete adjusts body and eyes in every tank, saved per canonical tank family. LT fires the secondary turret (A remains an alias), RT main gun, LS hull-relative driving and RS gun aim retained. Occupied tank screens draw over the hull; parked/APC panels retain depth occlusion. A one-time backed-up migration copies medium-tank screen layout to heavy/artillery families, preserving seats, heights and camera mounts/pitch/FOV.
+
+Private 0.13.37: heavy/artillery body, eyes and screens stay hull-fixed; medium cabin retains traversal. Full-circle tank yaw stays continuous across +/-180 degrees instead of wrapping the motor target by a full turn. Partial arcs remain clamped. Height, LT/RT controls, hull-relative steering, saved layouts and camera mounts retained. Headset verification pending.
+
+Private 0.13.38: artillery gun camera uses stable launcher assembly origin/orientation rather than alternating native muzzle tubes; other tank gun cameras retain muzzle attachment. Tank feed scheduling: gun every game frame, front/left/right/rear every second frame; three reduced-resolution passes per frame. APC remains four feeds. Saved camera offsets, body anchoring, screen layout and controls retained. Overall FPS and headset result unverified.
+
+Private 0.13.38 follow-up: screens 1/front and 2/gun update each game frame (2.5 times the previous two-of-five cadence); left/right/rear rotate at one third rate. Left camera position is authoritative on load, with right mirrored; editing either side updates its counterpart. Screen transforms remain independent. Tank aim input expires after 60 ms instead of 250 ms and is rejected while paused, reducing stale-input carryover. Residual motion after cannon movement remains unverified: no live tracking map was available for capture.
+
+Private 0.13.39: artillery camera 2 uses the verified mechanical elevation pivot (yaw pivot fallback, then turret root), never a firing weapon/tube position. Gun orientation still controls its viewing direction; saved camera offsets remain applied. Tests now vary weapon position while keeping pivot fixed. Existing feed cadence, mirrored side positions and tank controls retained. Live result pending.
+
+Private 0.13.40: LT directly overrides native tank secondary held/pressed actions 0x2A for local controller 0, with release/expiry/pause handling; A is removed from tank gameplay. APC front feed updates every game frame; others rotate at one third rate, reducing total to two passes. Tank feed cadence retained. Camera setup markers hidden. Includes pending artillery pivot correction. Saved settings retained; live results pending.
+
+Private 0.13.41: artillery camera 2 locks its position to the exact approved 0.13.40 live capture, in hull-local coordinates (-0.152348364, 1.506873195, 3.504900077); gun orientation remains live. Firing pivot, tube and weapon position changes cannot relocate it. Camera editor offsets remain usable. Camera profile loader canonicalizes all tank variants to heavy/medium/artillery family entries; current saved profiles already use those three families. Tests cover tube/weapon/pivot movement, direction and variant reload. Live result pending.
+
+Private 0.13.42: measured artillery weapon roll differs from the pitch rigid-body frame although forward matches. Camera 2 now uses the verified physical pitch body basis (+70), not the tube weapon basis; approved captured position is stored in native hull units, removing calibration-scale relocation. Per-family CameraMountScale keeps authored camera offsets independent of later seat calibration changes; canonical profiles already share all variants. Auxiliary view passes temporarily disable native sun generation and restore it afterward to prevent shared glare-texture contamination; main-eye shafts retain their path. Live results pending.
+
+Private 0.13.43: artillery camera 2 is a full rigid attachment to the verified physical launcher model body (+70). Position and orientation use the same frame; editor position is a fixed local offset, preserving the native rotation pivot. Supersedes the hull lock in 0.13.41/42. Derived initial offset uses the approved position and recorded model geometry; live placement still needs verification. Glare observation captured zero SunGlare01 values throughout; remaining sky wash is not confirmed fixed.
