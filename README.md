@@ -2,7 +2,7 @@
 
 An unofficial OpenXR VR mod for **Red Faction Guerrilla Re-MARS-tered**, Windows / Steam app 667720.
 
-Release 0.13.44. Includes the current lighting, tank cameras and approved placement defaults. Known issue: looking toward the sun can still produce excessive sky glare.
+Release 0.13.45. Fixes tracked gameplay arms being disabled on clean installs without a developer marker file. Includes the current lighting, tank cameras and approved placement defaults. Known issue: looking toward the sun can still produce excessive sky glare.
 
 ## [I WANNA PLAY NOW!](https://github.com/ElderMiner/Red-Faction-Guerrilla-Re-MARS-tered-VR/releases/latest/download/RFGRVR-Setup.exe)
 
@@ -270,7 +270,7 @@ Both modes keep native daytime lighting from 06:00 to 18:00. The improved preset
 
 ## Private tank setup (0.13.28)
 
-Tanks stay in first person. Left stick drives/reverses/steers; right stick rotates/elevates the gun. Right trigger fires the main cannon; A fires the secondary turret. Numpad 0 on foot opens the tank-only spawn list (8/2 selects, 5 spawns). In a tank, Numpad 1–5 selects front/barrel/left/right/rear; Control switches screen/camera editing. Arrows position; camera mode Page Up/Down moves forward/back and */minus changes FOV. Screen mode Page Up/Down tilts forward/back, Home/End turns left/right and */minus changes curvature. Screen-mode Numpad 0 starts right-hand placement, right grip confirms. Num Lock does not affect physical keypad selection. All edits save automatically. These are private setup controls, separate from the locked APC layout.
+Tanks stay in first person. Left stick drives/reverses/steers; right stick rotates/elevates the gun. Right trigger fires the main cannon; A fires the secondary turret. Numpad 0 on foot opens the tank-only spawn list (8/2 selects, 5 spawns). In a tank, Numpad 1ï¿½5 selects front/barrel/left/right/rear; Control switches screen/camera editing. Arrows position; camera mode Page Up/Down moves forward/back and */minus changes FOV. Screen mode Page Up/Down tilts forward/back, Home/End turns left/right and */minus changes curvature. Screen-mode Numpad 0 starts right-hand placement, right grip confirms. Num Lock does not affect physical keypad selection. All edits save automatically. These are private setup controls, separate from the locked APC layout.
 
 Tank setup: Heavy tanks only: Insert raises / Delete lowers the hull-anchored body and attached eyes. Tank camera housings and their forward pointers are visible. Head movement does not aim the tank gun.
 

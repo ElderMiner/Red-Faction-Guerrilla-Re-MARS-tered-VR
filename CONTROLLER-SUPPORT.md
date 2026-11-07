@@ -29,8 +29,11 @@ Index gripping uses squeeze force, rather than merely resting fingers on the
 controller. A half-scale firm squeeze reaches full grip, with the existing
 grab/release hysteresis.
 
-Pose tracking is never remapped. The existing Controls tab can remap gameplay
-actions. Controllers that provide native finger-joint data use that data;
+Pose tracking is never remapped. The same OpenXR pose actions are sampled
+through calibration and gameplay for all supported profiles. Explicit VR launch
+mode enables native tracked arms without `RFGRVR-controller-arms.enable`;
+Standard and unset launch modes remain disabled. The existing Controls tab can
+remap gameplay actions. Controllers that provide native finger-joint data use that data;
 otherwise the existing analog-grip open/closed fallback remains available.
 
 Quest 3 and Index hardware verification is still required: the binding and
