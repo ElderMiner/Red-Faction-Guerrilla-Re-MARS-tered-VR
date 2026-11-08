@@ -2,7 +2,7 @@
 
 An unofficial OpenXR VR mod for **Red Faction Guerrilla Re-MARS-tered**, Windows / Steam app 667720.
 
-Release 0.13.45. Fixes tracked gameplay arms being disabled on clean installs without a developer marker file. Includes the current lighting, tank cameras and approved placement defaults. Known issue: looking toward the sun can still produce excessive sky glare.
+Version 0.13.58. Quest controls follow the supplied controls.txt layout: tap B reloads, hold B uses/skips, tap X detonates active C4, hold X accepts missions, Y operates weapon mode, and Menu taps open the map while holding pauses. VR Settings now stores single-press, double-press and hold activation per action. The confirmed turret behavior and native seated body/hands remain unchanged.
 
 ## [I WANNA PLAY NOW!](https://github.com/ElderMiner/Red-Faction-Guerrilla-Re-MARS-tered-VR/releases/latest/download/RFGRVR-Setup.exe)
 
@@ -30,7 +30,7 @@ Donations are entirely optional. They never buy access, early releases, exclusiv
 - Handgun laser with a short red beam and a depth-tested impact spot that grows with range to a fixed size limit; its 37.5-metre range fades out over the last 7.5 metres. Your approved mount position and appearance are included as defaults; developer placement shortcuts are disabled.
 - Motion-based melee and throws, including inherited player/platform movement.
 - First-person vehicle, mech and turret handling with saved type-specific eye positions.
-- Vehicle-relative APC camera monitors, wrist/body HUD and world-positioned gameplay menus. Active mission timers appear above the wrist map.
+- Vehicle-relative APC camera monitors, wrist/body HUD and world-positioned gameplay menus. Active mission timers appear above the wrist map; native destruction score/goal appears above the timer in both on-foot and vehicle layouts.
 - DLC Missilepod stack reloading and approved DLC weapon/vehicle/HUD placements. Temporary setup hotkeys and automatic testing unlocks are disabled; progression remains native.
 - Main-menu artwork rasterized to a 6144 � 3456 surface and drawn through both eye views. Loading/fallback screens use the same world-plane renderer. In-game popup menus reuse the menu surfaces with 6K native UI capture and per-eye foreground drawing while open; main-menu, loading-screen and popup presentation are headset-confirmed.
 - Startup calibration, VR Settings with a right-hand laser pointer and trigger selection, a Recalibrate button, and right-eye desktop mirroring.
@@ -94,16 +94,20 @@ Left-pad commands require pressure and stay latched until release. Right-pad sel
 
 | Control | Gameplay action |
 |---|---|
-| Left / right stick | Move or steer / turn |
-| A / B / X | Jump / reload or chamber / detonate C4 in active C4 context |
-| Tap Y | Interact with a fresh use prompt; otherwise quick-switch |
-| Hold Y 0.5 seconds | Weapon selector; gesture with right hand |
-| Left stick click | Sprint while moving; vehicle view reset |
-| Right stick click | Crouch on foot; vehicle aiming overlay |
-| Push right stick down | Accept mission offer |
-| Left Menu / left grip + Menu | Pause / large Map |
+| Left stick / horizontal right stick | Move / turn; headset aims |
+| A | Jump |
+| Tap B / hold B | Reload or chamber / use or skip cutscenes |
+| Tap X / hold X | Detonate active C4 / accept mission |
+| Y | Weapon mode; tap to quick-switch, hold for existing selector |
+| Left stick press while moving | Sprint / cover |
+| Physical crouch or right stick press | Crouch |
+| Right trigger | Primary fire |
+| Swing held weapon | Melee |
+| Tap Menu / hold Menu | World map / pause |
 
-Y taps resolve on release. A hold does not also generate a tap. The interaction decision stays fixed for that tap so a disappearing prompt cannot turn it into a second action.
+Hold activation is 0.5 seconds. Shared tap/hold actions wait for release or the hold threshold, so holding B does not reload first and accepting a mission does not detonate charges. Interaction never depends on detecting an interactable. Use sends native Y; detonation remains C4-only. Fine aim is not used in VR. Menu A/B confirmation/back and existing vehicle thumb controls are preserved.
+
+In **VR Settings > Controls**, choose the binding and its **Single press**, **Double press** or **Hold** activation separately. Click the press-type column or use left/right on the selected row; click the binding to rebind it. Double presses use a 0.3-second window. A single press waits when its source also has a double/hold action, preventing both actions from firing. Shared bindings are supported. Quest bindings are stored separately from existing Frame/Index bindings; Reset Control Bindings restores the active profile's defaults. Held controls must return to neutral after a menu, mode change or rebinding.
 
 ### Steam Frame
 
@@ -176,10 +180,14 @@ Open **Pause > VR SETTINGS** in the headset or desktop window. Point with the ri
 | Vehicle view / play mode | First-/third-person preference; standing/seated |
 | Turning | Smooth/snap, speed and angle |
 | Player visibility | Gloves Only default, or Full Body |
-| Scene resolution | Low 11 PPD, Default approximately 16.8 PPD, High 20 PPD |
+| Scene resolution | Low: 80%, Default: 100%, High: 120% of runtime-recommended per-eye dimensions |
 | Vibration / vignette | Feedback preferences |
 | Eye height | On-foot adjustment; vehicle heights stay separate |
 | Show on desktop | Right-eye mirror, or a small black window |
+
+Default scene resolution uses the active OpenXR runtime's recommended per-eye dimensions for both game rendering and headset output. Low uses 80% of each dimension (about 64% of the pixels); High uses 120% (about 144%). Runtime limits and minimum supported sizes may constrain these percentages. Existing Low/Default/High selections are retained, but the old fixed 11/20 PPD targets are replaced by these proportional presets. No headset-specific resolution is written into your settings.
+
+Physical panel resolution is not the lens-corrected rendering recommendation. Rendering above panel size can preserve detail after optical distortion correction. Central render PPD is measured from the actual source projection and logged; it is not forced to a manufacturer's display PPD. Resolution changes preserve field of view, stereo geometry, saved world scale and calibration. A field-of-view or apparent-size problem needs separate investigation.
 
 The desktop mirror reuses the right-eye image rather than rendering another world camera. High resolution increases workload. Runtime submission/reprojection frequency is not the same as fresh game-frame frequency; headset refresh is not a guaranteed game frame rate.
 
@@ -229,7 +237,7 @@ A manual wipe of the game folder deletes those files too. Reinstall the base gam
 | Unsupported executable | Supported Steam build; do not bypass hash/signature checks |
 | Files in use | Close game/companion instead of forcing a loaded-file replacement |
 | Old placement after updating | Existing profiles are preserved intentionally |
-| Low frame rate | Compare Low/Default PPD in the same scene; record weapon, vehicle and extra views |
+| Low frame rate | Compare Low/Default scene resolution in the same scene; record weapon, vehicle and extra views |
 | Broken menu/stereo | Exact menu and whether one eye, both eyes or desktop is affected |
 | Update unavailable | Repository and matching release assets actually configured |
 

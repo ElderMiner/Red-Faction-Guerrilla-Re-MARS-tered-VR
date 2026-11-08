@@ -6,16 +6,16 @@ their own suggested bindings. Touch Plus is enabled only when the runtime
 advertises its extension; the ordinary Touch profile remains available.
 Controller labels in VR Settings update when the active profile changes.
 
-| Action | Steam Frame | Quest 3 Touch / Touch Plus | Valve Index |
+| Action | Steam Frame | Quest Touch / Touch Plus | Valve Index |
 |---|---|---|---|
 | Fire / secondary fire | Right / left trigger | Same | Same |
 | Hold / support grip | Grip | Grip trigger | Force-sensitive squeeze |
 | Move / turn | Left / right stick | Same | Same |
-| Jump / interact | Right A / B | A / tap Y with use prompt | Right A / Left A |
-| Reload | X | Right B | Right B |
-| Quick switch / hold weapon selector | Right bumper | Tap Y without use prompt / hold Y | Tap right pad: swap / hold: selector |
-| Map | View | Left grip + Menu | Press lower left trackpad |
-| Pause | Menu | Left Menu | Press upper left trackpad |
+| Jump / interact | Right A / B | A / hold B | Right A / Left A |
+| Reload | X | Tap right B | Right B |
+| Quick switch / hold weapon selector | Right bumper | Tap Y / hold Y | Tap right pad: swap / hold: selector |
+| Map | View | Tap Menu | Press lower left trackpad |
+| Pause | Menu | Hold Menu | Press upper left trackpad |
 | Crouch / vehicle recenter | Left stick click | RS click on foot / LS click in vehicle | RS click on foot / LS click in vehicle |
 | Vehicle aim overlay | Right stick click | Right stick click | Right stick click |
 
@@ -49,7 +49,7 @@ Updates preserve existing settings. Normal VR Settings remain available.
 - [Khronos OpenXR interaction profiles](https://registry.khronos.org/OpenXR/specs/1.0-khr/html/xrspec.html)
 - [Meta Touch Plus controller profile](https://developers.meta.com/vr/documentation/native/pc/native-touch-plus-controllers/)
 
-Quest additions: left stick click sprints on foot; pushing the right stick down accepts a mission offer. Right grip + right stick up/down retains vehicle eye-height adjustment and does not accept missions. Left X detonates C4 only. A/B retain confirm/back in menus. Y taps resolve on release; holding for 0.5 seconds opens the selector without interacting or quick-switching first. Steam Frame and Index layouts are unchanged.
+Quest defaults follow the supplied controls.txt: tap B reloads, hold B sends native Y for use/skip; tap X detonates active C4, hold X accepts a mission; Y operates weapon mode with quick-switch tap and the existing held selector. Menu taps open the world map and holding Menu pauses. Left stick press sprints only while moving. Physical crouching and right stick press both crouch. Right trigger fires and weapon swinging handles melee. Fine aim is not enabled. Shared taps do not fire before holds; no interactable/prompt detection is required. Menu A/B and existing vehicle thumb controls remain unchanged.
 
 Index: LS click sprints on foot. Left B detonates C4 only. Pushing RS down
 accepts mission offers unless right-grip vehicle eye-height adjustment owns
@@ -93,3 +93,9 @@ Private 0.13.42: measured artillery weapon roll differs from the pitch rigid-bod
 Private 0.13.43: artillery camera 2 is a full rigid attachment to the verified physical launcher model body (+70). Position and orientation use the same frame; editor position is a fixed local offset, preserving the native rotation pivot. Supersedes the hull lock in 0.13.41/42. Derived initial offset uses the approved position and recorded model geometry; live placement still needs verification. Glare observation captured zero SunGlare01 values throughout; remaining sky wash is not confirmed fixed.
 
 Release 0.13.44: approved placement defaults saved from the author session; private head/arm recordings excluded. RFGRVR_DEVELOPER_TOOLS gates tank editors/spawner and is undefined in distribution builds. Normal controls and VR Settings remain. Known sun-glare issue documented; no GitHub publication performed by packaging.
+
+Scene resolution is selected from the active headset runtime, independently of controller profile. Low/Default/High use 80%/100%/120% of recommended per-eye dimensions, subject to runtime and allocation limits. Tracking, controller bindings and world scale do not change with resolution.
+
+The mission Jetter gunner mount (turret_vehicle_jetter_rocket_mg) uses horizontal head movement plus left stick for whole-seat rotation, head pitch for gun elevation, a measured rotating-seat body anchor and an automatic actual-barrel crosshair; other turrets keep their existing hand controls. Mini walkers use the selected player smooth-turn speed for continuous chassis steering, not snap turning.
+
+VR Settings > Controls supports Single press, Double press and Hold per action. Click the press-type column or use left/right on the selected row. Bindings may share a source; taps wait for conflicting double/hold decisions. Hold is 500 ms and double-press spacing is 300 ms. Quest controls have a separate saved section; existing general bindings remain intact.
